@@ -1,17 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Routes, Route } from "react-router-dom"
+import Signup from "./signup"
+import Login from './login'
+import ForgotPassword from './ForgotPassword'
+import ResetPassword from './ResetPassword'
+import Dashboard from "./Dashboard"
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-
-    </>
-  )
+    return (
+        <Routes>
+            {/* <Route path="/" element={<Signup />} /> */}
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+    )
 }
 
 export default App
