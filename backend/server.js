@@ -86,7 +86,7 @@ app.post("/api/auth/forgot-password", async (req, res) => {
     })
     
     await transporter.sendMail({
-        from: "dkalariya374@gmail.com",
+        from: "dkalariya90@gmail.com",
         to: email,
         subject: "CoreInventory Password Reset OTP",
         text: `Your OTP is ${otp}`

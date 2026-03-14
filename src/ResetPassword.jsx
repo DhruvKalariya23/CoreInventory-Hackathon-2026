@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
+import "./login.css"
 
 function ResetPassword() {
 
@@ -32,27 +33,88 @@ function ResetPassword() {
   }
 
   return (
-    <div>
 
-      <h2>Reset Password</h2>
+    <div className="login-container">
 
-      <input
-        type="password"
-        placeholder="New Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div className="login-wrapper">
 
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        onChange={(e) => setConfirmPassword(e.target.value)}
-      />
+        {/* LEFT */}
+        <div className="form-section">
 
-      <button onClick={resetPassword}>
-        Reset Password
-      </button>
+          <div className="form-container">
+
+            <div className="logo">
+              <div className="logo-circle">D</div>
+              DAILY
+            </div>
+
+            <h2 className="heading">Reset password</h2>
+
+            <p className="subheading">
+              Enter new password
+            </p>
+
+            <div className="form">
+
+              <div className="form-group">
+                <label>New password</label>
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="New password"
+                  onChange={(e) =>
+                    setPassword(e.target.value)
+                  }
+                />
+              </div>
+
+              <div className="form-group">
+                <label>Confirm password</label>
+                <input
+                  className="input"
+                  type="password"
+                  placeholder="Confirm password"
+                  onChange={(e) =>
+                    setConfirmPassword(e.target.value)
+                  }
+                />
+              </div>
+
+              <button
+                className="submit-btn"
+                onClick={resetPassword}
+              >
+                Reset Password
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        {/* RIGHT */}
+        <div className="analytics-section">
+
+          <div className="analytics-content">
+
+            <div className="analytics-text">
+              <h2>Password security</h2>
+              <p>
+                Use a strong password to keep your
+                DAILY inventory account secure.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
 
     </div>
+
   )
 }
 
