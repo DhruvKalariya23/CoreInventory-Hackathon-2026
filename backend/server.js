@@ -73,20 +73,23 @@ app.post("/api/auth/forgot-password", async (req, res) => {
     const otp = Math.floor(1000 + Math.random() * 9000)
 
     otpStore[email] = otp
+    console.log('email', email);
+    console.log('otp', otp);
 
+    
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "yourgmail@gmail.com",
-        pass: "your_app_password"
+        user: "dkalariya90@gmail.com",
+        pass: "yigp opfn znki vkxx"
       }
     })
     
     await transporter.sendMail({
-      from: "yourgmail@gmail.com",
-      to: email,
-      subject: "Password Reset OTP",
-      text: `Your OTP is ${otp}`
+        from: "dkalariya374@gmail.com",
+        to: email,
+        subject: "CoreInventory Password Reset OTP",
+        text: `Your OTP is ${otp}`
     })
 
     res.json({ message: "OTP sent to email" })
