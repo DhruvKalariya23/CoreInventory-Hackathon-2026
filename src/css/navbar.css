@@ -1,0 +1,134 @@
+.navbar {
+    height: 58px;
+    background: #f3f4f6;
+    border-bottom: 1px solid #d1d5db;
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    padding: 0 14px;
+  
+    font-family: Inter, sans-serif;
+  }
+  
+  
+  /* LEFT */
+  
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .logo-box {
+    width: 14px;
+    height: 14px;
+    background: black;
+    border-radius: 2px;
+  }
+  
+  .logo {
+    font-weight: 600;
+    font-size: 15px;
+    color: #111827;
+  }
+  
+  
+  /* MENU */
+  
+  .menu {
+    display: flex;
+    gap: 6px;
+    margin-left: 10px;
+  }
+  
+  .menu span {
+  
+    font-size: 14px;
+    color: #4b5563;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .menu span:hover {
+    background: #e5e7eb;
+  }
+  
+  .menu .active {
+    background: #e5e7eb;
+    color: #111827;
+    font-weight: 500;
+  }
+  
+  
+  /* CENTER */
+  
+  .nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search {
+  
+    width: 300px;
+  
+    padding: 6px 10px;
+  
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+  
+    background: white;
+  }
+  
+  
+  /* RIGHT */
+  
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .icon {
+    position: relative;
+  }
+  
+  .badge {
+  
+    position: absolute;
+    top: -5px;
+    right: -6px;
+  
+    background: red;
+    color: white;
+  
+    font-size: 10px;
+  
+    border-radius: 50%;
+    padding: 2px 5px;
+  }
+  
+  .company {
+    font-size: 13px;
+    color: #374151;
+  }
+  
+  .profile {
+  
+    width: 28px;
+    height: 28px;
+  
+    border-radius: 50%;
+  
+    background: black;
+    color: white;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    font-size: 13px;
+  }

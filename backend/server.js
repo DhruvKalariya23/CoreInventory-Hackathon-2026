@@ -129,6 +129,11 @@ app.post("/api/auth/verify-otp", (req, res) => {
       res.status(500).json({ message: "Server error" })
     }
   })
+
+    const productRoutes = require("./routes/product");
+
+    app.use("/products", productRoutes);
+
 // Start server
 app.listen(5000, () => {
   console.log("Server running on port 5000")
