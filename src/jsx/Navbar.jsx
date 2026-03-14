@@ -38,7 +38,7 @@ function Navbar() {
                 </span>
             </Link>
 
-            <Link to="/history">
+            {/* <Link to="/history">
                 <span className={location.pathname === "/history" ? "active" : ""}>
                 Move History
                 </span>
@@ -48,7 +48,7 @@ function Navbar() {
                 <span className={location.pathname === "/settings" ? "active" : ""}>
                 Settings
                 </span>
-            </Link>
+            </Link> */}
 
         </div>
 

@@ -1,63 +1,198 @@
-    // import { useState, useEffect } from "react";
-    // import axios from "axios";
+import { useState, useEffect } from "react";
+import Navbar from "./Navbar";
+import "../css/product.css";
 
-    // export default function Product() {
-    //   const [products, setProducts] = useState([]);
-    //   const [form, setForm] = useState({
-    //     name: "",
-    //     sku: "",
-    //     category: "",
-    //     unit: "",
-    //     stock: 0,
-    //   });
+function Product() {
 
-    //   const loadProducts = async () => {
-    //     const res = await axios.get("http://localhost:5000/products");
-    //     setProducts(res.data);
-    //   };
+  const [products, setProducts] = useState([]);
+  const [showNewRow, setShowNewRow] = useState(false);
 
-    //   useEffect(() => {
-    //     loadProducts();
-    //   }, []);
+  const [form, setForm] = useState({
+    name: "",
+    sku: "",
+    category: "",
+    unit: "",
+    stock: "",
+  });
 
-    //   const handleChange = (e) => {
-    //     setForm({ ...form, [e.target.name]: e.target.value });
-    //   };
 
-    //   const addProduct = async () => {
-    //     await axios.post("http://localhost:5000/products", form);
-    //     loadProducts();
-    //   };
+  // LOAD PRODUCTS
+  const loadProducts = async () => {
 
-    //   const deleteProduct = async (id) => {
-    //     await axios.delete(`http://localhost:5000/products/${id}`);
-    //     loadProducts();
-    //   };
+    const res = await fetch(
+      "http://localhost:5000/products"
+    );
 
-    //   return (
-    //     <div>
+    const data = await res.json();
 
-    //       <h2>Product</h2>
+    setProducts(data);
+  };
 
-    //       <input name="name" placeholder="name" onChange={handleChange} />
-    //       <input name="sku" placeholder="sku" onChange={handleChange} />
-    //       <input name="category" placeholder="category" onChange={handleChange} />
-    //       <input name="unit" placeholder="unit" onChange={handleChange} />
-    //       <input name="stock" placeholder="stock" onChange={handleChange} />
 
-    //       <button onClick={addProduct}>Add</button>
+  useEffect(() => {
+    loadProducts();
+  }, []);
 
-    //       <ul>
-    //         {products.map((p) => (
-    //           <li key={p.id}>
-    //             {p.name} - {p.stock}
-    //             <button onClick={() => deleteProduct(p.id)}>
-    //               delete
-    //             </button>
-    //           </li>
-    //         ))}
-    //       </ul>
 
-    //     </div>
-    //   );
-    // }
+  const handleChange = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+
+  // ADD PRODUCT
+  const addProduct = async () => {
+
+    await fetch(
+      "http://localhost:5000/products",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      }
+    );
+
+    setShowNewRow(false);
+
+    setForm({
+      name: "",
+      sku: "",
+      category: "",
+      unit: "",
+      stock: "",
+    });
+
+    loadProducts();
+  };
+
+
+  // DELETE PRODUCT
+  const deleteProduct = async (id) => {
+
+    await fetch(
+      `http://localhost:5000/products/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    loadProducts();
+  };
+
+
+  return (
+    <div>
+
+      <Navbar />
+
+      <div className="product-page">
+
+        <div className="product-header">
+
+          <button
+            className="new-btn"
+            onClick={() => setShowNewRow(true)}
+          >
+            New
+          </button>
+
+          <h3>Products</h3>
+
+        </div>
+
+
+        <table className="product-table">
+
+          <thead>
+            <tr>
+              <th>Product Name</th>
+              <th>Internal Reference</th>
+              <th>Category</th>
+              <th>Unit Price</th>
+              <th>On Hand</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+
+          <tbody>
+
+
+            {/* NEW ROW */}
+
+            {showNewRow && (
+
+              <tr>
+
+                <td>
+                  <input name="name" onChange={handleChange} />
+                </td>
+
+                <td>
+                  <input name="sku" onChange={handleChange} />
+                </td>
+
+                <td>
+                  <input name="category" onChange={handleChange} />
+                </td>
+
+                <td>
+                  <input name="unit" onChange={handleChange} />
+                </td>
+
+                <td>
+                  <input name="stock" onChange={handleChange} />
+                </td>
+
+                <td>
+                  <button onClick={addProduct}>
+                    Save
+                  </button>
+                </td>
+
+              </tr>
+
+            )}
+
+
+            {/* DATA */}
+
+            {products.map((p) => (
+
+              <tr key={p.id}>
+
+                <td>{p.name}</td>
+                <td>{p.sku}</td>
+                <td>{p.category}</td>
+                <td>{p.unit}</td>
+                <td>{p.stock}</td>
+
+                <td>
+
+                  <button
+                    onClick={() => deleteProduct(p.id)}
+                  >
+                    Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+  );
+}
+
+export default Product;

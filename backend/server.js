@@ -73,8 +73,6 @@ app.post("/api/auth/forgot-password", async (req, res) => {
     const otp = Math.floor(1000 + Math.random() * 9000)
 
     otpStore[email] = otp
-    console.log('email', email);
-    console.log('otp', otp);
 
     
     const transporter = nodemailer.createTransport({
@@ -129,10 +127,8 @@ app.post("/api/auth/verify-otp", (req, res) => {
       res.status(500).json({ message: "Server error" })
     }
   })
-
-    const productRoutes = require("./routes/product");
-
-    app.use("/products", productRoutes);
+  const productRoutes = require("./routes/product");
+  app.use("/products", productRoutes);
 
 // Start server
 app.listen(5000, () => {
